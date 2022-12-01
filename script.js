@@ -25,6 +25,26 @@ const app = createApp({
                 this.getTodo();
                 this.newTodoText = '';
             })
+        },
+        toggleTodo(index){
+            //console.log(index)
+            const data = {
+                toggleToDoIndex: index
+            }
+            axios.post(this.apiURL, data, {headers: {'Content-Type': 'multipart/form-data'}}).then((response) => {
+                // console.log(response.data)
+                this.getTodo()
+            })
+        },
+        deleteTodo(index){
+            const data = {
+                deleteTodoIndex: index
+            }
+            axios.post(this.apiURL, data, {headers: {'Content-Type': 'multipart/form-data'}}).then((response) => {
+                console.log(response.data)
+                this.getTodo()
+            })
+
         } 
     },
     mounted() {
